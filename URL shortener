@@ -1,0 +1,14 @@
+# URL shortener
+
+import pyshorteners
+
+# Function to shorten URL
+def shorten_url(url):
+    shortener = pyshorteners.Shortener()
+    short_url = shortener.tinyurl.short(url)
+    return short_url
+
+# Example usage
+long_url = "https://www.example.com/this-is-a-very-long-url-that-needs-to-be-shortened"
+short_url = shorten_url(long_url)
+print(f"Shortened URL: {short_url}")
