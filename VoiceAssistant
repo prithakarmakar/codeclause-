@@ -1,0 +1,46 @@
+#Voice Assistant Using Python
+import speech_recognition as sr
+import pyttsx3
+
+# Initialize the recognizer
+r = sr.Recognizer()
+
+# Initialize the engine
+engine = pyttsx3.init()
+
+# Function to speak
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
+
+# Function to take command
+def take_command():
+    with sr.Microphone() as source:
+        print("Listening...")
+        audio = r.listen(source)
+
+        try:
+            print("Recognizing...")
+            query = r.recognize_google(audio)
+            print(f"User said: {query}\n")
+        except Exception as e:
+            print("Say that again please...")
+            return "None"
+        return query
+
+# Main function for the voice assistant
+def voice_assistant():
+    speak("Hello! I am your voice assistant. How can I help you today?")
+    while True:
+        query = take_command().lower()
+
+        if 'hello' in query:
+            speak("Hello there! How can I assist you?")
+        elif 'goodbye' in query:
+            speak("Goodbye! Have a great day.")
+            break
+        else:
+            speak("I'm sorry, I didn't understand that.")
+
+if name == "main":
+    voice_assistant()
